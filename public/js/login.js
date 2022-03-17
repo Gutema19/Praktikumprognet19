@@ -1,3 +1,13 @@
+function showpass1() {
+    var pass = document.getElementById('exampleInputPassword1');
+    var pass2 = document.getElementById('exampleInputPassword2');
+    if (pass.type === "password") {
+        pass.setAttribute('type', 'text');
+    } else {
+        pass.setAttribute('type', 'password');
+    }
+}
+
 function logdata() {
 
     var se = $('#exampleInputEmail1').val();
@@ -15,6 +25,7 @@ function logdata() {
         processData: false,
         //dataType: "JSON",
         success: function (response) {
+            //alert(response.responseJSON.message);
             window.location.href = "/home";
         },
         error: function (response) {
@@ -35,9 +46,9 @@ function logdata() {
                 }
 
             } else {
-                $('input[name=email]').removeClass('is-invalid');
-                $('input[name=password]').removeClass('is-invalid');
-                alert("Data tidak valid");
+                $('#exampleInputEmail1').val('');
+                $('#exampleInputPassword1').val('');
+                alert(response.responseJSON.message);
             }
         }
     });

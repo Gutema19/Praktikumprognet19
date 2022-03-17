@@ -44,7 +44,7 @@
                 <div class="invalid-feedback password"></div>
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="showpass1()">
                 <label class="form-check-label" for="exampleCheck1">Show Password</label>
             </div>
             <button type="submit" class="btn btn-secondary log">Login</button>

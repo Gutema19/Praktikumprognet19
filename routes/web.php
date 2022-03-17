@@ -40,7 +40,7 @@ Route::get('/verifyfpass', [verfy::class, 'index2'])->middleware('guest')->name(
 Route::get('/fpassview', [fpassctrl1::class, 'index'])->middleware('guest')->name('password.request');
 Route::post('/fpassmail', [fpassctrl1::class, 'mailv'])->middleware('guest')->name('password.email');
 
-Route::get('/passview', [passctrl::class, 'index']);
+Route::get('/passview', [passctrl::class, 'index'])->middleware('guest')->name('forgot.password');
 
 Auth::routes(['verify' => true]);
 
