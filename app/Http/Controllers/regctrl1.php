@@ -56,6 +56,6 @@ class regctrl1 extends Controller
             ]);
         }
 
-        return redirect()->route('admin_login');
+        return redirect()->route('admin.admin_login');
     }
 }

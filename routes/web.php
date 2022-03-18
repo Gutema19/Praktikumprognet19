@@ -38,8 +38,6 @@ Route::post('/logindt', [loginctrl::class, 'authenticate']); // transfer data us
 // Route untuk registrasi
 Route::get('/regview', [regctrl1::class, 'index'])->middleware('guest')->name('register.request'); // menampilkan halaman User Registration
 Route::post('/regdtpt1', [regctrl1::class, 'verification'])->middleware('guest')->name('register.verif'); // transfer data Admin Resgitration
-Route::get('/adminregview', [regctrl1::class, 'index2'])->middleware('guest')->name('adminregister.request'); // menampilkan halaman Admin Registration
-Route::post('/regdtpt2', [regctrl1::class, 'adminregis'])->middleware('guest')->name('adminregister.verif'); // transfer data Admin Resgitration
 
 // Route untuk verifikasi
 Route::get('/verify', [verfy::class, 'index1'])->middleware('auth')->name('verif1.request');
@@ -66,26 +64,22 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('homeuser');
 
-/*Route::prefix('user')->name('user.')->group(function () {
-    Route::middleware('guest')->group(function () {
-
-    });
-    Route::middleware('auth')->group(function () {
-
-    });
-});*/
-
 
 // Route untuk Admin
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest:admin')->group(function () {
         Route::get('/', [loginctrl::class, 'index1'])->name('admin_login'); // menampilkan halaman Admin login
         Route::post('/adminlogindt', [loginctrl::class, 'adminauth']); // validasi data login
+        Route::get('/adminregview', [regctrl1::class, 'index2'])->name('adminregister.request'); // menampilkan halaman Admin Registration
+        Route::post('/regdtpt2', [regctrl1::class, 'adminregis'])->name('adminregister.verif'); // transfer data Admin Resgitration
     });
-
+    
     Route::middleware('auth:admin')->group(function () {
         Route::get('/homeadmin', [App\Http\Controllers\HomeController::class, 'index1'])->name('homeadmin'); // menampilkan halaman admin
         Route::get('/logoutadmin', [logout::class, 'logout1'])->name('adminlogout'); // Log out Admin
+
+        // Route modul 2 tulis disini ya..
+
     });
 });
 

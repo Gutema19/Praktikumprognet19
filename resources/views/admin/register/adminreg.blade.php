@@ -27,10 +27,10 @@
   </div>
   <div class="register-content">
     <div class="login-pic2">
-      <img src="component/Group 9.svg" alt="gambar1">
+      <img src="/component/Group 9.svg" alt="gambar1">
     </div>
     <div class="login-pic3">
-      <img src="component/Line 2.svg" alt="gambar2">
+      <img src="/component/Line 2.svg" alt="gambar2">
     </div>
     <div class="login-container1">
       <h1>Register</h1>

@@ -101,7 +101,7 @@ function validateadmin() {
 
   $.ajax({
     type: "POST",
-    url: "/regdtpt2",
+    url: "/admin/regdtpt2",
     data: form_data,
     cache: false,
     contentType: false,
@@ -110,7 +110,7 @@ function validateadmin() {
       $('.form-login').find('.invalid-feedback').text('');
     },
     success: function (response) {
-      window.location.href = "admin";
+      window.location.href = "/admin";
       $('input[name=password]').removeClass('is-invalid');
       $('input[name=confirm_password]').removeClass('is-invalid');
       $('input[name=name]').removeClass('is-invalid');

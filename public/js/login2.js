@@ -23,7 +23,34 @@ function logdata() {
     contentType: false,
     processData: false,
     //dataType: "JSON",
+    beforeSend: function (response) {
+      isProcessing = true;
+      let timerInterval
+      Swal.fire({
+        title: 'Informasi',
+        text: 'Your data is being processed',
+        icon: 'info',
+        timer: 10000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+          }, 10000)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      })
+    },
     success: function (response) {
+      Swal.fire({
+        title: 'Yeay',
+        text: 'Data Validation Successful',
+        icon: 'success',
+      })
+      isProcessing = false;
       window.location.href = "/admin/homeadmin";
     },
     error: function (response) {
@@ -46,9 +73,15 @@ function logdata() {
 
 
       } else {
+        Swal.fire({
+          title: 'Error',
+          text: response.responseJSON.message,
+          icon: 'error',
+          confirmButtonText: 'Kembali',
+          confirmButtonColor: '#92110C'
+        })
         $('#exampleInputUsername1').val('');
         $('#exampleInputPassword1').val('');
-        alert(response.responseJSON.message);
       }
     }
   });
@@ -70,7 +103,7 @@ $(document).ready(function () {
 
   $('.btn.btn-secondary.regadmin').click(function (e) {
     e.preventDefault();
-    window.location.href = "adminregview";
+    window.location.href = "/admin/adminregview";
 
   });
 });
