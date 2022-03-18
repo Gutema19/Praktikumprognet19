@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&display=swap" rel="stylesheet">
-  <title>Login</title>
+  <title>Admin Dashboard</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="login-pic2">
-    <img src="component/Group 1.svg" alt="gambar1">
+    <img src="/component/Group 1.svg" alt="gambar1">
   </div>
   <div class="login-container1">
     <h1>Admin Page</h1>
@@ -35,11 +35,11 @@
       <div class="login-pic1">
         <img src="/component/Line 1.svg">
       </div>
-      <span>Wanna log out ?<a href="">click here</a></span>
+      <span>Wanna log out ?<a href="logoutadmin">click here</a></span>
     </div>
   </div>
   <div class="login-pic3">
-    <img src="component/Group 2.svg" alt="gambar2">
+    <img src="/component/Group 2.svg" alt="gambar2">
   </div>
 </body>
 

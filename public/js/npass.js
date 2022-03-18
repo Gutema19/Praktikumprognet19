@@ -39,7 +39,7 @@ function validate() {
       $('.form-login').find('.invalid-feedback').text('');
     },
     success: function (response) {
-      window.location.href = "/";
+      window.location.href = "/user";
       $('input[name=password]').removeClass('is-invalid');
       $('input[name=confirm_password]').removeClass('is-invalid');
     },

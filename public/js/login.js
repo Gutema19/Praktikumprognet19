@@ -72,4 +72,10 @@ $(document).ready(function () {
         window.location.href = "regview";
 
     });
+
+    $('.btn.btn-secondary.regadmin').click(function (e) {
+        e.preventDefault();
+        window.location.href = "adminregview";
+
+    });
 });

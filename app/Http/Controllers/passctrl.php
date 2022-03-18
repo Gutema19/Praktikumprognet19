@@ -9,7 +9,7 @@ class passctrl extends Controller
     //
     public function index()
     {
-        return view('pass1', [
+        return view('user.register.pass1', [
             'title' => 'Password',
             'active' => 'password'
         ]);

@@ -44,12 +44,12 @@ button{
     width: 160px;
     height: 46px;
 }
-.btn.reg{
+.btn.reg, .regadmin{
     background: transparent;
     color: #221E1F;
     border: 1px solid #221E1F;
 }
-.btn.reg:hover{
+.btn.reg:hover, .regadmin:hover{
     background: transparent;
     color: #221E1F;
     border: 3px solid #221E1F;
@@ -83,7 +83,10 @@ button{
     margin-top: 15%;
     width:355px;
 }
-
+.img3{
+    width: 400px;
+    height: 617px;
+}
 .login-logo{
     padding-left: 2%;
     padding-top: 2%;

@@ -10,7 +10,7 @@ class verfy extends Controller
 
     public function index1()
     {
-        return view('verify1', [
+        return view('user.register.verify1', [
             'title' => 'Verify',
             'active' => 'verify'
         ]);
@@ -18,7 +18,7 @@ class verfy extends Controller
 
     public function index2()
     {
-        return view('fgverify', [
+        return view('user.forget_password.fgverify', [
             'title' => 'Verifypass',
             'active' => 'verifypass'
         ]);

@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class loginctrl extends Controller
 {
+    // User territory
     public function index()
     {
-        return view('login', [
+        return view('user.login', [
             'title' => 'Login',
             'active' => 'login'
         ]);
@@ -28,6 +29,31 @@ class loginctrl extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/home');
+        } else {
+            return response()->json(['message' => 'The provided credentials do not match our records'], 400);
+        }
+    }
+
+    // Admin territory
+    public function index1()
+    {
+        return view('admin.adminlog', [
+            'title' => 'Admin Login',
+            'active' => 'login'
+        ]);
+    }
+
+    public function adminauth(Request $request)
+    {
+
+        $credentials = $request->validate([
+            'username' => 'required|min:5',
+            'password' => 'required|min:8'
+        ]);
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/admin/homeadmin');
         } else {
             return response()->json(['message' => 'The provided credentials do not match our records'], 400);
         }
