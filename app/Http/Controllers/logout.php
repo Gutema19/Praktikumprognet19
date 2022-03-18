@@ -33,6 +33,6 @@ class logout extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin_login');
+        return redirect()->route('admin.admin_login');
     }
 }

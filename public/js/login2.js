@@ -17,7 +17,7 @@ function logdata() {
 
   $.ajax({
     type: "POST",
-    url: "/adminlogindt",
+    url: "/admin/adminlogindt",
     data: form_data,
     cache: false,
     contentType: false,

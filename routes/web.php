@@ -28,11 +28,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 // Route untuk login
 Route::get('/user', [loginctrl::class, 'index'])->middleware('guest')->name('user_login'); // menampilkan halaman User login
 Route::post('/logindt', [loginctrl::class, 'authenticate']); // transfer data user login
 //Route::get('/admin', [loginctrl::class, 'index1'])->name('admin_login'); // menampilkan halaman Admin login
-Route::post('/adminlogindt', [loginctrl::class, 'adminauth']); // validasi data login
 
 // Route untuk registrasi
 Route::get('/regview', [regctrl1::class, 'index'])->middleware('guest')->name('register.request'); // menampilkan halaman User Registration
@@ -65,11 +66,21 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('homeuser');
 
+/*Route::prefix('user')->name('user.')->group(function () {
+    Route::middleware('guest')->group(function () {
+
+    });
+    Route::middleware('auth')->group(function () {
+
+    });
+});*/
+
 
 // Route untuk Admin
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest:admin')->group(function () {
         Route::get('/', [loginctrl::class, 'index1'])->name('admin_login'); // menampilkan halaman Admin login
+        Route::post('/adminlogindt', [loginctrl::class, 'adminauth']); // validasi data login
     });
 
     Route::middleware('auth:admin')->group(function () {
