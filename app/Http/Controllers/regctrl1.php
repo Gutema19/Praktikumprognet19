@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -19,12 +20,22 @@ class regctrl1 extends Controller
 
     public function verification(Request $request)
     {
-        $request->validate([
+        $validateuser = $request->validate([
             'name' => 'required|min:5|regex:/^[a-zA-Z ]{1,}$/',
             'email' => 'required|email:dns',
             'password' => 'required|min:8',
             'confirm_password' => 'required_with:password|min:8|same:password'
         ]);
+
+        if ($validateuser) {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+        }
+
+        return redirect()->route('verif1.request');
     }
 
 

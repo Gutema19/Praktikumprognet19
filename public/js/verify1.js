@@ -9,7 +9,7 @@ function valfpass() {
 
   $.ajax({
     type: "POST",
-    url: "fpassmail",
+    url: "{{ route('verification.resend') }}",
     data: form_data,
     cache: false,
     contentType: false,

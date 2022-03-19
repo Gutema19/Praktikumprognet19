@@ -15,29 +15,33 @@ function showpass1() {
   }
 }
 
-function validate() {
+function validateadmin() {
 
   var name = $('#exampleInputName1').val();
-  var email = $('#exampleInputEmail1').val();
+  var username = $('#exampleInputUsername1').val();
+  var phone = $('#exampleInputPhone1').val();
   var password = $('#exampleInputPassword1').val();
   var confirm_password = $('#exampleInputPassword2').val();
   var form_data = new FormData();
   form_data.append('name', name);
-  form_data.append('email', email);
+  form_data.append('username', username);
+  form_data.append('phone', phone);
   form_data.append('password', password);
   form_data.append('confirm_password', confirm_password);
 
 
   $.ajax({
     type: "POST",
-    url: "register",
+    url: "/admin/regdtpt2",
     data: form_data,
     cache: false,
     contentType: false,
     processData: false,
-    dataType: "JSON",
+    beforeSend: function () {
+      $('.form-login').find('.invalid-feedback').text('');
+    },
     success: function (response) {
-      window.location.href = "/email/verify?name=" + name + "&" + "email=" + email + "";
+      window.location.href = "/admin";
       $('input[name=password]').removeClass('is-invalid');
       $('input[name=confirm_password]').removeClass('is-invalid');
       $('input[name=name]').removeClass('is-invalid');
@@ -62,6 +66,11 @@ function validate() {
           $('.invalid-feedback.' + key).html(value[0]);
         }
 
+        if (response.responseJSON.errors.phone == null) {
+          $('input[name=phone]').removeClass('is-invalid');
+          $('.invalid-feedback.' + key).html(value[0]);
+        }
+
         if (response.responseJSON.errors.password == null) {
           $('input[name=password]').removeClass('is-invalid');
           $('.invalid-feedback.' + key).html(value[0]);
@@ -75,6 +84,7 @@ function validate() {
       } else {
         $('input[name=password]').removeClass('is-invalid');
         $('input[name=confirm_password]').removeClass('is-invalid');
+        $('input[name=phone]').removeClass('is-invalid');
         $('input[name=name]').removeClass('is-invalid');
         $('input[name=email]').removeClass('is-invalid');
       }
@@ -91,10 +101,9 @@ $(document).ready(function () {
     }
   });
 
-  $('.form-login').submit(function (e) {
+  $('.form-login.admin').submit(function (e) {
     e.preventDefault();
-    validate();
+    validateadmin();
   });
-
 
 });

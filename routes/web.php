@@ -28,8 +28,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 // Route untuk login
 Route::get('/user', [loginctrl::class, 'index'])->middleware('guest')->name('user_login'); // menampilkan halaman User login
 Route::post('/logindt', [loginctrl::class, 'authenticate']); // transfer data user login
@@ -73,7 +71,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/adminregview', [regctrl1::class, 'index2'])->name('adminregister.request'); // menampilkan halaman Admin Registration
         Route::post('/regdtpt2', [regctrl1::class, 'adminregis'])->name('adminregister.verif'); // transfer data Admin Resgitration
     });
-    
     Route::middleware('auth:admin')->group(function () {
         Route::get('/homeadmin', [App\Http\Controllers\HomeController::class, 'index1'])->name('homeadmin'); // menampilkan halaman admin
         Route::get('/logoutadmin', [logout::class, 'logout1'])->name('adminlogout'); // Log out Admin

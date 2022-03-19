@@ -28,7 +28,8 @@ class loginctrl extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+            return response()->json([], 200);
+            //return redirect()->intended('/home');
         } else {
             return response()->json(['message' => 'The provided credentials do not match our records'], 400);
         }

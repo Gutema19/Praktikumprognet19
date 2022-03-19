@@ -23,7 +23,7 @@ function logdata() {
         cache: false,
         contentType: false,
         processData: false,
-        //dataType: "JSON",
+        dataType: "JSON",
         success: function (response) {
             //alert(response.responseJSON.message);
             window.location.href = "/home";
@@ -69,13 +69,13 @@ $(document).ready(function () {
 
     $('.btn.btn-secondary.reg').click(function (e) {
         e.preventDefault();
-        window.location.href = "regview";
+        window.location.href = "register";
 
     });
 
-    $('.btn.btn-secondary.regadmin').click(function (e) {
+    /*$('.btn.btn-secondary.regadmin').click(function (e) {
         e.preventDefault();
         window.location.href = "adminregview";
 
-    });
+    });*/
 });
