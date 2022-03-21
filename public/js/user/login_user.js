@@ -16,6 +16,14 @@ function logdata() {
     form_data.append('email', se);
     form_data.append('password', pass);
 
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+
     $.ajax({
         type: "POST",
         url: "/logindt",
@@ -24,8 +32,37 @@ function logdata() {
         contentType: false,
         processData: false,
         dataType: "JSON",
+        beforeSend: function (response) {
+            isProcessing = true;
+            let timerInterval
+            Swal.fire({
+                title: 'Info',
+                text: 'Your data is being processed',
+                icon: 'info',
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 5000)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
+        },
         success: function (response) {
-            //alert(response.responseJSON.message);
+            swalWithBootstrapButtons.fire({
+                title: 'Yeay',
+                text: 'Data Validation Successful',
+                icon: 'success',
+                showConfirmButton: false,
+                //confirmButtonText: 'Next',
+            })
+            isProcessing = false;
+
             window.location.href = "/home";
         },
         error: function (response) {
@@ -46,9 +83,17 @@ function logdata() {
                 }
 
             } else {
+                swalWithBootstrapButtons.fire({
+                    title: 'Error',
+                    text: response.responseJSON.message,
+                    icon: 'error',
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonText: 'Kembali',
+                })
                 $('#exampleInputEmail1').val('');
                 $('#exampleInputPassword1').val('');
-                alert(response.responseJSON.message);
+
             }
         }
     });

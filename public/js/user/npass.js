@@ -18,6 +18,14 @@ function showpass1() {
 
 function validate() {
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+
   var password = $('#exampleInputPassword1').val();
   var confirm_password = $('#exampleInputPassword2').val();
   var token = $('.token').val();
@@ -36,9 +44,34 @@ function validate() {
     contentType: false,
     processData: false,
     beforeSend: function () {
-      $('.form-login').find('.invalid-feedback').text('');
+      isProcessing = true;
+      let timerInterval
+      Swal.fire({
+        title: 'Info',
+        text: 'Wait for data validation',
+        icon: 'info',
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+          }, 5000)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      })
     },
     success: function (response) {
+      swalWithBootstrapButtons.fire({
+        title: 'Yeay',
+        text: 'Data Validation Successful',
+        icon: 'success',
+        showConfirmButton: false,
+      })
+      isProcessing = false;
       window.location.href = "/user";
       $('input[name=password]').removeClass('is-invalid');
       $('input[name=confirm_password]').removeClass('is-invalid');

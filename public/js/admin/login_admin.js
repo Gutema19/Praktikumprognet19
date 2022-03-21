@@ -15,6 +15,14 @@ function logdata() {
   form_data.append('username', username);
   form_data.append('password', pass);
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+
   $.ajax({
     type: "POST",
     url: "/admin/adminlogindt",
@@ -27,7 +35,7 @@ function logdata() {
       isProcessing = true;
       let timerInterval
       Swal.fire({
-        title: 'Informasi',
+        title: 'Info',
         text: 'Your data is being processed',
         icon: 'info',
         timer: 10000,
@@ -45,10 +53,12 @@ function logdata() {
       })
     },
     success: function (response) {
-      Swal.fire({
+      swalWithBootstrapButtons.fire({
         title: 'Yeay',
         text: 'Data Validation Successful',
         icon: 'success',
+        showConfirmButton: false,
+        //confirmButtonText: 'Next',
       })
       isProcessing = false;
       window.location.href = "/admin/homeadmin";
@@ -73,12 +83,13 @@ function logdata() {
 
 
       } else {
-        Swal.fire({
+        swalWithBootstrapButtons.fire({
           title: 'Error',
           text: response.responseJSON.message,
           icon: 'error',
-          confirmButtonText: 'Kembali',
-          confirmButtonColor: '#92110C'
+          showCancelButton: true,
+          showConfirmButton: false,
+          cancelButtonText: 'Back',
         })
         $('#exampleInputUsername1').val('');
         $('#exampleInputPassword1').val('');

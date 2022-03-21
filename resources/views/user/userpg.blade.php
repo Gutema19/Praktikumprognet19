@@ -35,7 +35,7 @@
       <div class="login-pic1">
         <img src="/component/Line 1.svg">
       </div>
-      <span>Wanna log out ?<a href="logout">click here</a></span>
+      <span>Wanna log out ?<a href="/logout">click here</a></span>
     </div>
   </div>
   <div class="login-pic3">

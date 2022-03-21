@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/login2.js" type="text/javascript"></script> 
+    <script src="/js/admin/login_admin.js" type="text/javascript"></script> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@
     </div>
     <div class="login-container1">
         <h1 data-aos="fade-up" data-aos-delay="600">Login</h1>
-        <span data-aos="zoom-up" data-aos-delay="600">Hello Admin Hilton, the center of trendy fashion in the world please enter your username and password below.</span>
+        <span data-aos="zoom-up" data-aos-delay="625">Hello Admin Hilton, the center of trendy fashion in the world please enter your username and password below.</span>
         <form class="form-login" enctype="multipart/form-data">
             @csrf
             <div class="mb-3 surel" data-aos="fade-up" data-aos-delay="600">
@@ -49,12 +49,12 @@
                 <input type="text" name="username" class="form-control surel" id="exampleInputUsername1" autofocus required value="{{ old ('username') }}">
                 <div class="invalid-feedback username"></div>
             </div>
-            <div class="mb-3" data-aos="fade-up" data-aos-delay="600">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="625">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control ktsd" id="exampleInputPassword1" required>
                 <div class="invalid-feedback password"></div>
             </div>
-            <div class="mb-3 form-check" data-aos="fade-up" data-aos-delay="600">
+            <div class="mb-3 form-check" data-aos="fade-up" data-aos-delay="650">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="showpass1()">
                 <label class="form-check-label" for="exampleCheck1">Show Password</label>
             </div>

@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('landingpg');
 
 // Route untuk login
 Route::get('/user', [loginctrl::class, 'index'])->middleware('guest')->name('user_login'); // menampilkan halaman User login

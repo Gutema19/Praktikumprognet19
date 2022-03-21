@@ -17,6 +17,14 @@ function showpass1() {
 
 function validate() {
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+
   var name = $('#exampleInputName1').val();
   var email = $('#exampleInputEmail1').val();
   var password = $('#exampleInputPassword1').val();
@@ -36,7 +44,35 @@ function validate() {
     contentType: false,
     processData: false,
     dataType: "JSON",
+    beforeSend: function (response) {
+      isProcessing = true;
+      let timerInterval
+      Swal.fire({
+        title: 'Info',
+        text: 'Your data is being processed',
+        icon: 'info',
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+          }, 5000)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      })
+    },
     success: function (response) {
+      swalWithBootstrapButtons.fire({
+        title: 'Yeay',
+        text: 'Data Validation Successful',
+        icon: 'success',
+        showConfirmButton: false,
+      })
+      isProcessing = false;
       window.location.href = "/email/verify?name=" + name + "&" + "email=" + email + "";
       $('input[name=password]').removeClass('is-invalid');
       $('input[name=confirm_password]').removeClass('is-invalid');
@@ -44,7 +80,6 @@ function validate() {
       $('input[name=email]').removeClass('is-invalid');
     },
     error: function (response) {
-
       if (response.status == 422) {
         $.each(response.responseJSON.errors, function (key, value) {
           $('input[name=' + key + ']').addClass('is-invalid');
@@ -73,11 +108,20 @@ function validate() {
         }
 
       } else {
+        swalWithBootstrapButtons.fire({
+          title: 'Error',
+          text: response.responseJSON.message,
+          icon: 'error',
+          showCancelButton: true,
+          showConfirmButton: false,
+          cancelButtonText: 'Back',
+        })
         $('input[name=password]').removeClass('is-invalid');
         $('input[name=confirm_password]').removeClass('is-invalid');
         $('input[name=name]').removeClass('is-invalid');
         $('input[name=email]').removeClass('is-invalid');
       }
+
     }
   });
 }
@@ -95,6 +139,11 @@ $(document).ready(function () {
     e.preventDefault();
     validate();
   });
+
+  /*$('.btn.btn-secondary.log').click(function (e) {
+    e.preventDefault();
+    validate();
+  });*/
 
 
 });
