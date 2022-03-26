@@ -70,7 +70,7 @@
         <div class="mb-3" data-aos="fade-up" data-aos-delay="650">
           <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
           <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword2" required>
-          <div class="invalid-feedback confirm-password"></div>
+          <div class="invalid-feedback confirm_password"></div>
         </div>
         <div class="mb-3 form-check" data-aos="fade-up" data-aos-delay="655">
           <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="showpass1()">

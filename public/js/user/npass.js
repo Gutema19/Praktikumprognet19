@@ -72,7 +72,7 @@ function validate() {
         showConfirmButton: false,
       })
       isProcessing = false;
-      window.location.href = "/user";
+      window.location.href = "/login_user";
       $('input[name=password]').removeClass('is-invalid');
       $('input[name=confirm_password]').removeClass('is-invalid');
     },
