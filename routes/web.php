@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'prevent-back-history'], function () {
+    Auth::routes(['verify' => true]);
+
     Route::get('/', function () {
         return view('welcome');
     })->middleware('guest')->name('landingpg');
@@ -59,7 +61,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     // Route untuk password
     Route::get('/passview', [passctrl::class, 'index'])->middleware('guest')->name('forgot.password');
 
-    Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('homeuser');
 
