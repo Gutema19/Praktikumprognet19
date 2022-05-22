@@ -28,15 +28,21 @@
     <img src="/component/Group 1.svg" alt="gambar1">
   </div>
   <div class="login-container1">
-    <h1>Admin Page</h1>
-    <span>This site is currently under development, please wait for it to finish. Hilton th trendy fashion in the world</span>
+    <h1>WELCOME</h1>
+    <span>Selamat datang di website Hilton Store</span>
 
+ 
     <div class="footer">
       <div class="login-pic1">
         <img src="/component/Line 1.svg">
       </div>
-      <span>Wanna log out ?<a href="logoutadmin">click here</a></span>
+      <span>Dashboard Admin <a href="{{ url('admin/list') }}">click here</a></span>
     </div>
+
+  </div>
+  <a href="logoutadmin">Logout</a>
+</div>
+    
   </div>
   <div class="login-pic3">
     <img src="/component/Group 2.svg" alt="gambar2">

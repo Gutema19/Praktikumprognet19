@@ -42,7 +42,7 @@
     <div class="login-container1">
         <h1 data-aos="fade-up" data-aos-delay="600">Login</h1>
         <span data-aos="zoom-up" data-aos-delay="625">Hello Admin Hilton, the center of trendy fashion in the world please enter your username and password below.</span>
-        <form class="form-login" enctype="multipart/form-data">
+        <form method="POST" action="{{ url('logindt') }}" class="form-login" enctype="multipart/form-data">
             @csrf
             <div class="mb-3 surel" data-aos="fade-up" data-aos-delay="600">
                 <label for="exampleInputUsername1" class="form-label">Username</label>

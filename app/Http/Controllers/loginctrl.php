@@ -53,7 +53,8 @@ class loginctrl extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin/homeadmin');
+            return redirect()->route('admin.listadmin');
+        
         } else {
             return response()->json(['message' => 'The provided credentials do not match our records'], 400);
         }

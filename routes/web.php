@@ -11,7 +11,11 @@ use App\Http\Controllers\verfy;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CourierController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +37,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
     // Route untuk login
     Route::get('/login_user', [loginctrl::class, 'index'])->middleware('guest')->name('user_login'); // menampilkan halaman User login
-    Route::post('/logindt', [loginctrl::class, 'authenticate']); // transfer data user login
+    Route::post('/logindt', [loginctrl::class, 'adminauth']); // transfer data user login
     //Route::get('/admin', [loginctrl::class, 'index1'])->name('admin_login'); // menampilkan halaman Admin login
 
     // Route untuk registrasi
@@ -79,9 +83,55 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
             // Route modul 2 tulis disini ya..
 
+            //Kategori Route
+            Route::get('kategori/list', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('listkategori');
+            Route::get('kategori/add', [App\Http\Controllers\Admin\CategoryController::class, 'add'])->name('addkategori');
+            Route::post('kategori', [App\Http\Controllers\Admin\CategoryController::class, 'addprocess']);
+            Route::get('kategori/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);
+            Route::patch('kategori/editproses/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'editprocess']);
+            Route::delete('kategori/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete']);
+            
+            //Detail Kategori Route
+            Route::get('detailkategori/list', [App\Http\Controllers\Admin\DetailCategoryController::class, 'index'])->name('listdetcategory');
+            Route::get('detailkategori/add', [App\Http\Controllers\Admin\DetailCategoryController::class, 'add'])->name('adddetailkategori');
+            Route::post('detailkategori', [App\Http\Controllers\Admin\DetailCategoryController::class, 'addprocess']);
+            Route::get('detailkategori/edit/{id}', [App\Http\Controllers\Admin\DetailCategoryController::class, 'edit']);
+            Route::patch('detailkategori/editproses/{id}', [App\Http\Controllers\Admin\DetailCategoryController::class, 'editprocess']);
+            Route::delete('detailkategori/{id}', [App\Http\Controllers\Admin\DetailCategoryController::class, 'delete']);
+            
+            //Product Route
+            Route::get('product', [ProductController::class, 'index'])->name('listproduct');
+            Route::get('product/add', [ProductController::class, 'add']);
+            Route::post('product', [ProductController::class, 'addprocess']);
+            Route::get('product/edit/{id}',[ProductController::class, 'edit']);
+            Route::patch('product/editproses/{id}', [ProductController::class, 'editprocess']);
+            Route::delete('product/{id}', [ProductController::class, 'delete']);
+            
+            //Admin Route
+            Route::get('/list', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('listadmin');
+            Route::get('/add', [App\Http\Controllers\Admin\AdminController::class, 'add'])->name('addadmin');
+            Route::post('/admin', [App\Http\Controllers\Admin\AdminController::class, 'addprocess']);
+            Route::get('/edit/{id}', [App\Http\Controllers\Admin\AdminController::class, 'edit']);
+            Route::patch('/editproses/{id}', [App\Http\Controllers\Admin\AdminController::class, 'editprocess']);
+            Route::delete('/{id}', [App\Http\Controllers\Admin\AdminController::class, 'delete']);
+            
+            //Courier Route
+            Route::get('/courier', [CourierController::class, 'index'])->name('listcourier');
+            Route::get('courier/add', [CourierController::class, 'add'])->name('addcourier');
+            Route::post('/courier', [CourierController::class, 'addprocess']);
+            Route::get('courier/edit/{id}', [CourierController::class, 'edit']);
+            Route::patch('courier/editprocess/{id}', [CourierController::class, 'editprocess']);
+            Route::delete('/courier/{id}', [CourierController::class, 'delete']);
+            
+            });
+            
+        
+        
         });
-    });
 
-    // Route untuk logout
-    Route::get('/logout', [logout::class, 'logout']); // Log out User
-});
+        // Route untuk logout
+        Route::get('/logout', [logout::class, 'logout']); // Log out User
+
+
+
+    });
