@@ -26,7 +26,7 @@ function logdata() {
 
     $.ajax({
         type: "POST",
-        url: "/logindt",
+        url: "login",
         data: form_data,
         cache: false,
         contentType: false,
@@ -59,7 +59,6 @@ function logdata() {
                 text: 'Data Validation Successful',
                 icon: 'success',
                 showConfirmButton: false,
-                //confirmButtonText: 'Next',
             })
             isProcessing = false;
 
