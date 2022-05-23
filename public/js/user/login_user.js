@@ -26,7 +26,7 @@ function logdata() {
 
     $.ajax({
         type: "POST",
-        url: "/logindt",
+        url: "login",
         data: form_data,
         cache: false,
         contentType: false,
