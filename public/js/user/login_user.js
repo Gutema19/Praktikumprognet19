@@ -59,7 +59,6 @@ function logdata() {
                 text: 'Data Validation Successful',
                 icon: 'success',
                 showConfirmButton: false,
-                //confirmButtonText: 'Next',
             })
             isProcessing = false;
 
