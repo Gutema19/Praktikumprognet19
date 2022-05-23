@@ -30,7 +30,6 @@ function logdata() {
     cache: false,
     contentType: false,
     processData: false,
-    //dataType: "JSON",
     beforeSend: function (response) {
       isProcessing = true;
       let timerInterval
