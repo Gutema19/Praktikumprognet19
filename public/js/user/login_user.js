@@ -114,7 +114,7 @@ $(document).ready(function () {
 
     $('.btn.btn-secondary.reg').click(function (e) {
         e.preventDefault();
-        window.location.href = "register";
+        window.location.href = "register_user";
 
     });
 

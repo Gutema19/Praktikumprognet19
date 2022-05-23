@@ -31,14 +31,14 @@ use App\Http\Controllers\HomeController;
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Auth::routes(['verify' => true]);
 
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('homeuser');
     Route::get('/', function () {
-        return view('welcome');
+        return view('homepage');
     })->middleware('guest')->name('landingpg');
 
     // Route untuk login
     Route::get('/login_user', [loginctrl::class, 'index'])->middleware('guest')->name('user_login'); // menampilkan halaman User login
-    Route::post('/logindt', [loginctrl::class, 'adminauth']); // transfer data user login
-    //Route::get('/admin', [loginctrl::class, 'index1'])->name('admin_login'); // menampilkan halaman Admin login
+    Route::post('/logindt', [loginctrl::class, 'adminauth']); 
 
     // Route untuk registrasi
     Route::get('/register_user', [regctrl1::class, 'index'])->middleware('guest')->name('register.request'); // menampilkan halaman User Registration
@@ -64,10 +64,12 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
     // Route untuk password
     Route::get('/passview', [passctrl::class, 'index'])->middleware('guest')->name('forgot.password');
-
-
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('homeuser');
 
+    // Route Cart
+    Route::view('cart', 'user.cart.index')->name('cart');
+
+    Route::view('checkout', 'user.checkout')->name('checkout');
 
     // Route untuk Admin
     Route::prefix('admin')->name('admin.')->group(function () {
