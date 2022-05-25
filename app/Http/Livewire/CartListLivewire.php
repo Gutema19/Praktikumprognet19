@@ -10,6 +10,7 @@ use App\Models\Province;
 class CartListLivewire extends Component
 {
     public $provinces;
+    public array $selectedItems;
 
     public function render()
     {
@@ -53,6 +54,11 @@ class CartListLivewire extends Component
 
     public function checkout()
     {
+        // $setOfIds = $model->manyStuff->pluck('id')->toArray();
+
+        // $this->selectedItems = array_fill_keys($setOfIds, true);
+
+        // $this->manyStuff = $model->manyStuff;
         return redirect()->route('checkout');
     }
 }

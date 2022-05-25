@@ -13,6 +13,7 @@ class ProductReviewLivewire extends Component
     public $transaction_id;
     public $review;
     public $rate = 0;
+    
     public function render()
     {
         return view('livewire.product-review');

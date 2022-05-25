@@ -17,7 +17,7 @@ class TransactionResourceController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with('user', 'courier', 'products')->get();
+        $transactions = Transaction::with('user', 'courier', 'products')->orderBy('created_at', 'DESC')->get();
         return view('admin.transaction.index', compact('transactions'));
     }
 

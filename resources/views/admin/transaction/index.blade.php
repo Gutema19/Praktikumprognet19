@@ -36,10 +36,10 @@
                                             <td>{{ $transaction->user->name }}</td>
                                             <td>{{ $transaction->address }}</td>
                                             <td>{{ $transaction->regency . ', ' . $transaction->province }}</td>
-                                            <td>{{ number_format($transaction->shipping_cost, 2, ',', '.') }}</td>
+                                            <td>Rp {{ number_format($transaction->shipping_cost, 2, ',', '.') }}</td>
                                             <td class="text-uppercase">{{ $transaction->courier->courier }}</td>
                                             <td>{{ $transaction->status }}</td>
-                                            <td>{{ number_format($transaction->total, 2, ',', '.') }}</td>
+                                            <td>Rp {{ number_format($transaction->total, 2, ',', '.') }}</td>
                                             <td class="justify-content-center">
                                                 <div class="mb-2">
                                                     @if ($transaction->status != 'Dibatalkan' && $transaction->status != 'Telah Sampai')
@@ -107,7 +107,7 @@
     </div>
 
     @foreach ($transactions as $transaction)
-        {{-- modal --}}
+        {{-- modal Transaction   --}}
         <div class="modal fade" id="product--{{ $transaction->id }}" tabindex="-1" aria-labelledby="productLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -117,7 +117,7 @@
                             #{{ $transaction->id }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body"> 
                         <div class="card">
                             <table class="table table-bordered text-white" width="100%" cellspacing="0">
                                 <thead>

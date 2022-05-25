@@ -3,9 +3,9 @@
         <span class="text-number">
             {{ $cart_count }}
         </span>
-        <span class="text-item">
+        {{-- <span class="text-item">
             Shopping Cart
-        </span>
+        </span> --}}
         <span class="price">
            Rp. {{ number_format($price_total, 2, ',', '.') }}
         </span>

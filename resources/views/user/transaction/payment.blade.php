@@ -85,9 +85,9 @@
                                 </h5>
                                 <p>Please Transfer your payment into this bank account</p>
                                 <p>
-                                    <strong>Bank Name</strong> : BCA<br>
-                                    <strong>Account Name</strong> : PT. Electro TI<br>
-                                    <strong>Account Number</strong> : 90384858392<br>
+                                    <strong>Bank Name</strong> : BNI<br>
+                                    <strong>Account Name</strong> : Hilton Fashion<br>
+                                    <strong>Account Number</strong> : 989128938<br>
                                 </p>
                             </div>
                             <div>

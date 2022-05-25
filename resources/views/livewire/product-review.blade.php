@@ -10,7 +10,8 @@
                 <div class="card d-flex m-5">
                     <div class="card-body d-flex flex-row">
                         <div class="col-2">
-                            <img src="{{ $product->images[0]->image_name }}" alt="" class="img-fluid">
+                            {{-- <img src="{{ $product->images[0]->image_name }}" alt="" class="img-fluid"> --}}
+                            <img class="img-fluid" src="{{ asset('assets/image/products/product-1.jpg') }}" alt="Image Description">
                         </div>
                         <div class="col-10">
                             <h5 class="card-title">{{ $product->product_name }}</h5>

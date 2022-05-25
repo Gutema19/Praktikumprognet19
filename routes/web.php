@@ -38,8 +38,8 @@ Route::get('product/{product}', [ProductUserController::class, 'show'])->name('p
 
 // Route untuk Admin
 Route::prefix('admin')->name('admin.')->group(function () {
+    
     Route::middleware('guest:admin')->group(function () {
-
         // Admin sebelum login
         Route::get('/', [loginctrl::class, 'index1'])->name('admin_login'); 
         Route::post('/adminlogindt', [loginctrl::class, 'adminauth']);
@@ -76,7 +76,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::patch('product/editproses/{id}', [ProductController::class, 'editprocess']);
         Route::delete('product/{id}', [ProductController::class, 'delete']);
         
-        //Admin Route
+        // Admin List
         Route::get('/list', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('listadmin');
         Route::get('/add', [App\Http\Controllers\Admin\AdminController::class, 'add'])->name('addadmin');
         Route::post('/admin', [App\Http\Controllers\Admin\AdminController::class, 'addprocess']);

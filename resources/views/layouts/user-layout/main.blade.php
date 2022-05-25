@@ -25,7 +25,7 @@
                                 <img src="/component/Logo.svg" alt="">
                             </a>
                         </div>
-                        <div class="col-lg-3">
+                        {{-- <div class="col-lg-3">
                             <div class="header-phone ">
                                 <div class="icon">
                                     <i class="fas fa-headphones-alt"></i>
@@ -33,6 +33,17 @@
                                 <div class="text">
                                     <p>Free Support 24/7</p>
                                     <p class="font-weight-bold number">+01-202-555-0181</p>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <div class="col-lg-3">
+                            <div class="main-navigation flex-lg-right">
+                                <div class="cart-widget">
+                                    @auth
+                                        <a href="/cart">
+                                            @livewire('cart-livewire')
+                                        </a>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
@@ -65,211 +76,18 @@
                                 </ul>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
             <div class="header-bottom pb--10">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-3">
-                            <nav class="category-nav   ">
-                                <div>
-                                    <a href="javascript:void(0)" class="category-trigger"><i
-                                            class="fa fa-bars"></i>Browse
-                                        categories</a>
-                                    <ul class="category-menu">
-                                        <li class="cat-item has-children">
-                                            <a href="#">Arts & Photography</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="cat-item has-children mega-menu"><a href="#">Biographies</a>
-                                            <ul class="sub-menu">
-                                                <li class="single-block">
-                                                    <h3 class="title">WHEEL SIMULATORS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Bags & Cases</a></li>
-                                                        <li><a href="#">Binoculars & Scopes</a></li>
-                                                        <li><a href="#">Digital Cameras</a></li>
-                                                        <li><a href="#">Film Photography</a></li>
-                                                        <li><a href="#">Lighting & Studio</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <h3 class="title">WHEEL SIMULATORS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Bags & Cases</a></li>
-                                                        <li><a href="#">Binoculars & Scopes</a></li>
-                                                        <li><a href="#">Digital Cameras</a></li>
-                                                        <li><a href="#">Film Photography</a></li>
-                                                        <li><a href="#">Lighting & Studio</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <h3 class="title">WHEEL SIMULATORS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Bags & Cases</a></li>
-                                                        <li><a href="#">Binoculars & Scopes</a></li>
-                                                        <li><a href="#">Digital Cameras</a></li>
-                                                        <li><a href="#">Film Photography</a></li>
-                                                        <li><a href="#">Lighting & Studio</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <h3 class="title">WHEEL SIMULATORS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Bags & Cases</a></li>
-                                                        <li><a href="#">Binoculars & Scopes</a></li>
-                                                        <li><a href="#">Digital Cameras</a></li>
-                                                        <li><a href="#">Film Photography</a></li>
-                                                        <li><a href="#">Lighting & Studio</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="cat-item "><a href="#">Accessories</a></li>
-                                        <li class="cat-item "><a href="#">Education</a></li>
-                                        <li class="cat-item hidden-menu-item"><a href="#">Indoor Living</a></li>
-                                        <li class="cat-item"><a href="#" class="js-expand-hidden-menu">More
-                                                Categories</a></li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="header-search-block">
-                                <input type="text" placeholder="Search entire store here">
-                                <button>Search</button>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="main-navigation flex-lg-right">
-                                <div class="cart-widget">
-                                    <a href="/cart">
-                                        @livewire('cart-livewire')
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
-        <!--=================================
-        Hero Area
-        ===================================== -->
-        <section class="hero-area hero-slider-1">
-            <div class="sb-slick-slider" data-slick-setting='{
-                            "autoplay": true,
-                            "fade": true,
-                            "autoplaySpeed": 3000,
-                            "speed": 3000,
-                            "slidesToShow": 1,
-                            "dots":true
-                            }'>
-                <div class="single-slide bg-shade-whisper  ">
-                    <div class="container">
-                        <div class="home-content text-center text-sm-left position-relative">
-                            <div class="hero-partial-image image-right">
-                                <img src="image/bg-images/home-slider-2-ai.png" alt="">
-                            </div>
-                            <div class="row no-gutters ">
-                                <div class="col-xl-6 col-md-6 col-sm-7">
-                                    <div class="home-content-inner content-left-side">
-                                        <h1>H.G. Wells<br>
-                                            De Vengeance</h1>
-                                        <h2>Cover Up Front Of Books and Leave Summary</h2>
-                                        <a href="shop-grid.html" class="btn btn-outlined--primary">
-                                            $78.09 - Order Now!
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-slide bg-ghost-white">
-                    <div class="container">
-                        <div class="home-content text-center text-sm-left position-relative">
-                            <div class="hero-partial-image image-left">
-                                <img src="image/bg-images/home-slider-1-ai.png" alt="">
-                            </div>
-                            <div class="row align-items-center justify-content-start justify-content-md-end">
-                                <div class="col-lg-6 col-xl-7 col-md-6 col-sm-7">
-                                    <div class="home-content-inner content-right-side">
-                                        <h1>J.D. Kurtness <br>
-                                            De Vengeance</h1>
-                                        <h2>Cover Up Front Of Books and Leave Summary</h2>
-                                        <a href="shop-grid.html" class="btn btn-outlined--primary">
-                                            $78.09 - Learn More
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!--=================================
-        Home Features Section
-        ===================================== -->
-        <section class="mb--30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 mt--30">
-                        <div class="feature-box h-100">
-                            <div class="icon">
-                                <i class="fas fa-shipping-fast"></i>
-                            </div>
-                            <div class="text">
-                                <h5>Free Shipping Item</h5>
-                                <p> Orders over $500</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mt--30">
-                        <div class="feature-box h-100">
-                            <div class="icon">
-                                <i class="fas fa-redo-alt"></i>
-                            </div>
-                            <div class="text">
-                                <h5>Money Back Guarantee</h5>
-                                <p>100% money back</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mt--30">
-                        <div class="feature-box h-100">
-                            <div class="icon">
-                                <i class="fas fa-piggy-bank"></i>
-                            </div>
-                            <div class="text">
-                                <h5>Cash On Delivery</h5>
-                                <p>Lorem ipsum dolor amet</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mt--30">
-                        <div class="feature-box h-100">
-                            <div class="icon">
-                                <i class="fas fa-life-ring"></i>
-                            </div>
-                            <div class="text">
-                                <h5>Help & Support</h5>
-                                <p>Call us : + 0123.4567.89</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         @yield('body')
 
