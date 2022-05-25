@@ -33,14 +33,21 @@ use App\Http\Controllers\Admin\TransactionResourceController;
 |
 */
 
+// Route Product untuk guests dan auth
+Route::get('product/{product}', [ProductUserController::class, 'show'])->name('product.show');      
+
 // Route untuk Admin
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest:admin')->group(function () {
-        Route::get('/', [loginctrl::class, 'index1'])->name('admin_login'); // menampilkan halaman Admin login
-        Route::post('/adminlogindt', [loginctrl::class, 'adminauth']); // validasi data login
-        Route::get('/adminregview', [regctrl1::class, 'index2'])->name('adminregister.request'); // menampilkan halaman Admin Registration
-        Route::post('/regdtpt2', [regctrl1::class, 'adminregis'])->name('adminregister.verif'); // transfer data Admin Resgitration
+
+        // Admin sebelum login
+        Route::get('/', [loginctrl::class, 'index1'])->name('admin_login'); 
+        Route::post('/adminlogindt', [loginctrl::class, 'adminauth']);
+        Route::get('/adminregview', [regctrl1::class, 'index2'])->name('adminregister.request');
+        Route::post('/regdtpt2', [regctrl1::class, 'adminregis'])->name('adminregister.verif');
     });
+
+    // Admin akses setelah login
     Route::middleware('auth:admin')->group(function () {
         Route::get('/homeadmin', [App\Http\Controllers\HomeController::class, 'index1'])->name('home_admin'); // menampilkan halaman admin
         Route::get('/logoutadmin', [logout::class, 'logout1'])->name('adminlogout'); // Log out Admin
@@ -103,65 +110,53 @@ Route::middleware('auth')->group(function () {
     })->name('password.email');
 
     // Route untuk logout
-    Route::get('/logout', [logout::class, 'logout']); // Log out User
-
-    Route::view('product', 'user.product-detail')->name('product');
-
+    Route::get('/logout', [logout::class, 'logout']);
+    
     // Route Cart
     Route::view('cart', 'user.cart.index')->name('cart');
-    
     Route::view('checkout', 'user.checkout')->name('checkout');
-
-    Route::post('product/{product}/review', [ProductUserController::class, 'storeReview'])->name('review.store');
     
+    // Route Product
+    // Route::view('product', 'user.product-detail')->name('product'); // digunakan kalo mau semua livewire
+    Route::post('product/{product}/review', [ProductUserController::class, 'storeReview'])->name('review.store');
     Route::get('product/{product}/buy-now', [ProductUserController::class, 'buyNow'])->name('product.buynow');
 
+    // Route Payment
     Route::get('payment/{transaction}', [TransactionController::class, 'payment'])->name('payment');
     Route::post('payment/{transaction}/proof_payment', [TransactionController::class, 'uploadProofPayment'])->name('proof_payment');
     Route::post('payment/{transaction}', [TransactionController::class, 'deleteTransaction'])->name('delete-transaction');
 
+    // Route My Transaction
     Route::get('my-transaction', [OrderUserController::class, 'index'])->name('my-transaction');
 
 });
 
 Route::middleware('guest')->group(function () {
-
-    Route::get('/', function () {
-        return view('homepage');
-    })->name('landingpg');
-
+    
+    // Root website
     Route::view('/', 'homepage')->name('landingpg');
 
-    // Route untuk login
-    // menampilkan halaman User login
+    // Sebelum Login
     Route::get('/login_user', [loginctrl::class, 'index'])->name('user_login'); 
     Route::post('/logindt', [loginctrl::class, 'adminauth']); 
 
-    // Route untuk registrasi
-    Route::get('/register_user', [regctrl1::class, 'index'])->name('register.request'); // menampilkan halaman User Registration
-    Route::post('/regdtpt1', [regctrl1::class, 'verification'])->name('register.verif'); // transfer data Admin Resgitration
-    
+    // Registrasi User
+    Route::get('/register_user', [regctrl1::class, 'index'])->name('register.request');
+    Route::post('/regdtpt1', [regctrl1::class, 'verification'])->name('register.verif'); 
     Route::get('/verifyfpass', [verfy::class, 'index2'])->name('verif2.request');
-    
 
-    // Route untuk lupa password
     // User Lupa Password
     Route::get('/fpassview', [fpassctrl1::class, 'index'])->name('password.request');
     Route::post('/fpassmail', [fpassctrl1::class, 'mailv'])->name('password.email');
     Route::post('/newpass', [npassctrl::class, 'npass'])->name('password.update');
+    Route::get('/passview', [passctrl::class, 'index'])->name('forgot.password');
 
     //Admin Lupa Password
     Route::get('/adminfpassview', [fpassctrl1::class, 'index1'])->name('adminpassword.request');
     Route::post('/fpassadmin', [fpassctrl1::class, 'adminv'])->name('password.email');
     Route::get('/npassview', [npassctrl::class, 'index1'])->name('anewpassword.request');
-
-    // Route untuk password
-    Route::get('/passview', [passctrl::class, 'index'])->name('forgot.password');
-
 });
 
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Auth::routes(['verify' => true]);
 });
-
-Route::get('product/{product}', [ProductUserController::class, 'show'])->name('product.show');      
