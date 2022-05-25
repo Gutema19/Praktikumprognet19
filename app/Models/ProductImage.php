@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product_image extends Model
+class ProductImage extends Model
 {
     use HasFactory;
 
@@ -14,15 +14,5 @@ class Product_image extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function response()
-    {
-        return $this->hasOne(Respon::class, 'review_id');
     }
 }

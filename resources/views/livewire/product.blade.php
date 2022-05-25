@@ -18,13 +18,13 @@
               <div class="single-slide">
               <div class="product-card">
                    <div class="product-header">
-                        <h3><a href="#">{{ $product->product_name }}</a></h3>
+                        <h3><a href="{{ route('product.show', $product->id) }}">{{ $product->product_name }}</a></h3>
                    </div>
                    <div class="product-card--body">
                         <div class="card-image">
                              <img src="{{ asset('assets/image/products/product-1.jpg') }}" alt="">
                              <div class="hover-contents">
-                                  <a href="product-details.html" class="hover-image">
+                                  <a href="{{ route('product.show', $product->id) }}" class="hover-image">
                                   <img src="{{ asset('assets/image/products/product-1.jpg') }}" alt="">
                                   </a>
                                   <div class="hover-btns">

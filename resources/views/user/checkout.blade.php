@@ -3,9 +3,7 @@
 @section('body')
 <div class="container">
     <div class="mb-5">
-        <h1 class="text-center">Checkout</h1>
+        @livewire('checkout-livewire')
     </div>
-
-    @livewire('checkout-livewire')
 </div>
 @endsection

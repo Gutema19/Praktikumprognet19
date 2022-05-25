@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-3 ">
-                            <a href="index.html" class="site-brand">
+                            <a href="/" class="site-brand">
                                 <img src="/component/Logo.svg" alt="">
                             </a>
                         </div>
@@ -39,63 +39,29 @@
                         <div class="col-lg-6">
                             <div class="main-navigation flex-lg-right">
                                 <ul class="main-menu menu-right ">
-                                    <li class="menu-item has-children">
-                                        <a href="{{ route('homeuser') }}">Home</a>
+                                    @auth
+                                    <li class="menu-item">
+                                        <a href="{{ url('/home') }}">Home</a>
                                     </li>
                                     <!-- Shop -->
-                                    <li class="menu-item has-children mega-menu">
-                                        <a href="javascript:void(0)">shop <i
+                                    <li class="menu-item">
+                                        <a href="{{ url('/my-transaction') }}">My Transaction</a>
+                                    </li>
+                                    <li class="menu-item has-children">
+                                        <a href="">{{ auth()->user()->name }} <i
                                                 class="fas fa-chevron-down dropdown-arrow"></i></a>
-                                        <ul class="sub-menu four-column">
-                                            <li class="cus-col-25">
-                                                <h3 class="menu-title"><a href="javascript:void(0)">Shop Grid </a></h3>
-                                                <ul class="mega-single-block">
-                                                    <li><a href="shop-grid.html">Fullwidth</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">left Sidebar</a></li>
-                                                    <li><a href="shop-grid-right-sidebar.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="cus-col-25">
-                                                <h3 class="menu-title"> <a href="javascript:void(0)">Shop List</a></h3>
-                                                <ul class="mega-single-block">
-                                                    <li><a href="shop-list.html">Fullwidth</a></li>
-                                                    <li><a href="shop-list-left-sidebar.html">left Sidebar</a></li>
-                                                    <li><a href="shop-list-right-sidebar.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="cus-col-25">
-                                                <h3 class="menu-title"> <a href="javascript:void(0)">Product Details
-                                                        1</a></h3>
-                                                <ul class="mega-single-block">
-                                                    <li><a href="product-details.html">Product Details Page</a></li>
-                                                    <li><a href="product-details-affiliate.html">Product Details
-                                                            Affiliate</a></li>
-                                                    <li><a href="product-details-group.html">Product Details Group</a>
-                                                    </li>
-                                                    <li><a href="product-details-variable.html">Product Details
-                                                            Variables</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="cus-col-25">
-                                                <h3 class="menu-title"><a href="javascript:void(0)">Product Details
-                                                        2</a></h3>
-                                                <ul class="mega-single-block">
-                                                    <li><a href="product-details-left-thumbnail.html">left Thumbnail</a>
-                                                    </li>
-                                                    <li><a href="product-details-right-thumbnail.html">Right
-                                                            Thumbnail</a></li>
-                                                    <li><a href="product-details-left-gallery.html">Left Gallery</a>
-                                                    </li>
-                                                    <li><a href="product-details-right-gallery.html">Right Gallery</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                        <ul class="sub-menu">
+                                            <li> <a href="{{ url('/logout') }}">Logout</a></li>
                                         </ul>
                                     </li>
-                                    
+                                    @else
                                     <li class="menu-item">
-                                        <a href="contact.html">Contact</a>
+                                        <a href="{{ url('/login_user') }}">Login</a>
                                     </li>
+                                    <li class="menu-item">
+                                        <a href="{{ url('/register_user') }}">Register</a>
+                                    </li>
+                                    @endauth
                                 </ul>
                             </div>
                         </div>
@@ -184,22 +150,6 @@
                         <div class="col-lg-4">
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
-                                    <div class="login-block">
-                                        @if (Route::has('login'))
-                                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                                @auth
-                                                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                                                    <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
-                                                @else
-                                                    <a href="/login_user" class="font-weight-bold">Log In</a> <br>
-
-                                                    @if (Route::has('register'))
-                                                        <span>or</span><a href="/register_user" class="text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                                                    @endif
-                                                @endauth
-                                            </div>
-                                        @endif
-                                    </div>
                                     <a href="/cart">
                                         @livewire('cart-livewire')
                                     </a>
@@ -401,7 +351,7 @@
                 <a href="#" class="payment-block">
                     <img src="image/icon/payment.png" alt="">
                 </a>
-                <p class="copyright-text">Copyright © 20 Kelompok 19. All Right Reserved.
+                <p class="copyright-text">Copyright © 2022 Kelompok 19. All Right Reserved.
                     <br>
                     Design By Kelompok 19</p>
             </div>

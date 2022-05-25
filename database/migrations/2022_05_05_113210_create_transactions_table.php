@@ -24,8 +24,8 @@ class CreateTransactionsTable extends Migration
             $table->double('total');
             $table->double('shipping_cost');
             $table->double('sub_total');
-            $table->string('proof_of_payment');
-            $table->enum('status', ['unverified','verified','delivered','success','expired','canceled']);
+            $table->string('proof_of_payment')->nullable();
+            $table->enum('status', ['Telah Sampai', 'Dalam Pengiriman', 'Dibatalkan', 'Belum Terbayar', 'Pending', 'Expired']);
             $table->timestamps();
         });
     }

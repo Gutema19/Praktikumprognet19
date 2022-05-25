@@ -20,24 +20,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($carts as $cart)
-                                    <tr class="cart_item">
-                                        <td>{{ $cart->product->product_name }}<strong class="product-quantity">×
-                                                {{ $cart->qty }}</strong>
-                                        </td>
-                                        <td>
-                                            @if ($cart->product->discount)
-                                                <ins class="text-decoration-none">Rp.
-                                                    {{ number_format($cart->product->price_discount() * $cart->qty, 2, ',', '.') }}</ins>
-                                                <del class="tex-gray-6 " style="bottom: 75%">Rp.
-                                                    {{ number_format($cart->product->price * $cart->qty, 2, ',', '.') }}</del>
-                                            @else
-                                                Rp
-                                                {{ number_format($cart->product->price * $cart->qty, 2, ',', '.') }}
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <tr class="cart_item">
+                                    <td>{{ $product->product_name }}<strong class="product-quantity">×
+                                            {{ $qty }}</strong>
+                                    </td>
+                                    <td>
+                                        @if ($product->discount)
+                                            <ins class="text-decoration-none">Rp.
+                                                {{ number_format($product->price_discount() * $qty, 2, ',', '.') }}</ins>
+                                            <del class="tex-gray-6 " style="bottom: 75%">Rp.
+                                                {{ number_format($product->price * $qty, 2, ',', '.') }}</del>
+                                        @else
+                                            Rp {{ number_format($product->price * $qty, 2, ',', '.') }}
+                                        @endif
+                                    </td>
+                                    {{-- <td>
+                                    </td> --}}
+                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -87,11 +86,13 @@
                         </div>
                         @if ($cost != null && !$serviceChanged)
                             <button wire:click='checkout' type="button"
-                                class="btn btn-dark btn-block btn-pill font-size-20 mb-3 py-3">Place
+                                class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3">Place
                                 order</button>
                         @endif
                         @if ($id_courier != null && $id_city != null && $id_province != null && $id_service != null)
-                            <button type="button" wire:click='checkCost' wire:target="checkCost" wire:loading.attr="disabled" class="btn btn-secondary btn-block btn-pill font-size-20 mb-3 py-3">
+                            <button type="button" wire:click='checkCost' wire:target="checkCost"
+                                wire:loading.attr="disabled"
+                                class="btn btn-secondary btn-block btn-pill font-size-20 mb-3 py-3">
                                 Check Shipping Cost
                                 <div class="spinner-border d-none" wire:target="checkCost"
                                     wire:loading.class.remove="d-none" role="status">
@@ -242,7 +243,7 @@
                                 <span class="text-danger">*</span>
                             </label>
                             <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                wire:model.lazy='address' placeholder="Jln. W.R Supratman No.3">
+                                wire:model.lazy='address' placeholder="470 Lucy Forks">
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

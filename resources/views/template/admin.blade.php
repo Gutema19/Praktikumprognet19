@@ -98,6 +98,12 @@ Coded by www.creative-tim.com
               <p>Courier</p>
             </a>
           </li>
+          <li>
+            <a href="{{ route('admin.transaction.index') }}">
+              <i class="nc-icon nc-cart-simple"></i>
+              <p>Transaction</p>
+            </a>
+          </li>
           {{-- <li>
             <a href="./tables.html">
               <i class="nc-icon nc-money-coins"></i>

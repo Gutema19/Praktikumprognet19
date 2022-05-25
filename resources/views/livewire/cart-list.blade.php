@@ -13,7 +13,8 @@
                             <!-- Head Row -->
                             <thead>
                                 <tr>
-                                    <th class="pro-remove"></th>
+                                    <th class="pro-remove">Checklist</th>
+                                    <th class="pro-remove">Delete</th>
                                     <th class="pro-thumbnail">Image</th>
                                     <th class="pro-title">Product</th>
                                     <th class="pro-price">Price</th>
@@ -26,7 +27,9 @@
                                     
                                 <!-- Product Row -->
                                 <tr>
-                                    
+                                    <td>
+                                        <input type="checkbox" wire:click="checklist">
+                                    </td>
                                     <td class="pro-remove"><a wire:click='deleteItem({{ $cart->id }})'
                                         class="text-gray-32 font-size-26"><i class="far fa-trash-alt"></i></a>
                                     </td>
@@ -51,11 +54,11 @@
                                     <td data-title="Quantity" class="pro-quantity">
                                         <span class="sr-only">Quantity</span>
                                         <!-- Quantity -->
-                                        <div class="border rounded-pill py-1 width-122 w-xl-90 px-3 border-color-1">
+                                        <div class="border rounded-pill ">
                                             <div class="js-quantity row align-items-center">
-                                                <div class="col-auto pr-1">
+                                                <div class="col-auto ">
                                                     <button wire:click="decrementQty({{ $cart->id }})"
-                                                        class=" btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0">
+                                                        class=" btn btn-icon btn-xs btn-outline-secondary border-0">
                                                         <small class="fas fa-minus btn-icon__inner"></small>
                                                     </button>
             
@@ -67,7 +70,7 @@
                                                 </div>
                                                 <div class="col-auto pl-1">
                                                     <button wire:click="incrementQty({{ $cart->id }})"
-                                                        class="btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0">
+                                                        class="btn btn-icon btn-xs btn-outline-secondary border-0">
                                                         <small class="fas fa-plus btn-icon__inner"></small>
                                                     </button>
                                                 </div>
@@ -99,23 +102,3 @@
         </div>
     </div>
 </div>
-
-<!-- Cart Summary -->
-{{-- <div class="col-lg-12 col-12 d-flex">
-    <div class="cart-summary">
-        <div class="cart-summary-wrap">
-            <h4><span>Cart Summary</span></h4>
-            <p>Sub Total <span class="text-primary">$1250.00</span></p>
-            <p>Shipping Cost <span class="text-primary">$00.00</span></p>
-            <h2>Grand Total <span class="text-primary">$1250.00</span></h2>
-        </div>
-        <div class="cart-summary-button">
-            @if ($carts->count() > 0)
-                <div class="mb-5 d-flex justify-content-center">
-                    <button type="button" wire:click='checkout' wire:loading.attr="disabled"
-                        class="btn btn-primary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto checkout-btn c-btn btn--primary">Checkout</button>
-                </div>
-            @endif
-        </div>
-    </div>
-</div> --}}

@@ -2,50 +2,56 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Admin;
 use App\Models\Cart;
 use App\Models\City;
 use App\Models\Courier;
+use App\Models\Product;
 use App\Models\Province;
 use App\Models\Transaction;
 use App\Models\Transaction_detail;
-use App\Notifications\AdminNotification;
-use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
-class CheckoutLivewire extends Component
+class ProductBuyNowLivewire extends Component
 {
-    public $provinces;
-    public $cities;
+
+    public Product $product;
+
+    public $qty;
+    public $cost;
+    public $province;
+    public $city;
     public $courier;
     public $services;
-    public $carts;
-    public $cost = 0;
-    public $subtotal = 0;
-    public $weight = 0;
+    public $weight;
+    public $subtotal;
     public $address;
     public $id_province = '';
     public $id_city = '';
     public $id_courier = '';
     public $id_service = '';
-    public $list_courier = [];
     public $serviceChanged = false;
+
+    protected $queryString = ['qty'];
 
     protected $rules = [
         'address' => 'required|min:6',
     ];
 
-    public function render()
+    public function mount(Product $product)
     {
+        $this->product = $product;
+        if ($this->qty <= 0) {
+            $this->qty = 1;
+        }
+        if ($this->qty > $this->product->stock) {
+            $this->qty = $this->product->stock;
+        }
         $this->sumSubtotal();
         $this->sumWeight();
         $this->provinces = Province::all();
-        $this->carts = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
         $this->couriers = Courier::all('courier', 'id');
-        return view('livewire.checkout');
     }
 
     public function updatedIdProvince()
@@ -86,33 +92,27 @@ class CheckoutLivewire extends Component
             'weight' => $this->weight,
             'courier' => Courier::find($this->id_courier)->courier
         ])->json()['rajaongkir']['results'][0]['costs'][$this->id_service]['cost'][0]['value'];
-
         $this->serviceChanged = false;
     }
 
     public function sumSubtotal()
     {
-        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
-        $this->subtotal = 0;
-        foreach ($cart as $item) {
-            $this->subtotal += $item->product->discount ? $item->product->price_discount() * $item->qty : $item->product->price * $item->qty;
-        }
+        $this->subtotal += ($this->product->discount ? $this->product->price_discount() : $this->product->price) * $this->qty;
     }
 
     public function sumWeight()
     {
-        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
-        $this->weight = 0;
-        foreach ($cart as $item) {
-            $this->weight += $item->product->weight * $item->qty;
-        }
+        $this->weight += $this->product->weight * $this->qty;
     }
 
     public function checkout()
     {
         $this->validate();
 
-        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
+        $this->product->update([
+            'stock' => $this->product->stock - $this->qty
+        ]);
+
         $trx = Transaction::create([
             'timeout' => Carbon::now()->addDay(),
             'address' => $this->address,
@@ -125,19 +125,22 @@ class CheckoutLivewire extends Component
             'courier_id' => $this->id_courier,
             'status' => 'Belum Terbayar'
         ]);
-        foreach ($cart as $item) {
-            Transaction_detail::create([
-                'transaction_id' => $trx->id,
-                'product_id' => $item->product->id,
-                'qty' => $item->qty,
-                'discount' => $item->product->discount->percentage ?? 0,
-                'selling_price' => $item->product->discount ? $item->product->price_discount() : $item->product->price
-            ]);
-            $item->product->stock -= $item->qty;
-            $item->product->save();
-        }
-        Cart::whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->delete();
-        
+
+        Transaction_detail::create([
+            'transaction_id' => $trx->id,
+            'product_id' => $this->product->id,
+            'qty' => $this->qty,
+            'discount' => 0,
+            'selling_price' => $this->product->discount ? $this->product->price_discount() : $this->product->price
+        ]);
+        $this->product->stock -= $this->qty;
+        $this->product->save();
+
         return redirect()->route('payment', $trx->id);
+    }
+
+    public function render()
+    {
+        return view('livewire.product-buy-now');
     }
 }
