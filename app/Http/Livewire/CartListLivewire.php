@@ -10,7 +10,10 @@ use App\Models\Province;
 class CartListLivewire extends Component
 {
     public $provinces;
-    public array $selectedItems;
+
+    public $selected = [];
+
+    public $selectAll = false;
 
     public function render()
     {
@@ -52,13 +55,16 @@ class CartListLivewire extends Component
         $this->emit('itemIncremented');
     }
 
-    public function checkout()
+    public function checkoutSelected()
     {
-        // $setOfIds = $model->manyStuff->pluck('id')->toArray();
+        if (!auth()->check()) {
+            return redirect()->route('user_login');
+        }
+        
+        Cart::query()->whereIn('id', $this->selected)->update([
+            'status' => 'checked'
+        ]);
 
-        // $this->selectedItems = array_fill_keys($setOfIds, true);
-
-        // $this->manyStuff = $model->manyStuff;
         return redirect()->route('checkout');
     }
 }

@@ -33,6 +33,9 @@ use App\Http\Controllers\Admin\TransactionResourceController;
 |
 */
 
+// Root website
+Route::view('/', 'user.product')->name('landingpg');
+
 // Route Product untuk guests dan auth
 Route::get('product/{product}', [ProductUserController::class, 'show'])->name('product.show');      
 
@@ -132,9 +135,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    
-    // Root website
-    Route::view('/', 'homepage')->name('landingpg');
 
     // Sebelum Login
     Route::get('/login_user', [loginctrl::class, 'index'])->name('user_login'); 

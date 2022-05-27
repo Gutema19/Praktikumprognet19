@@ -29,7 +29,7 @@ class ProductMiniCartLivewire extends Component
     public function addToCart()
     {
         if (!auth()->check()) {
-            return redirect()->route('login');
+            return redirect()->route('user_login');
         }
         $cart = Cart::whereUserId(auth()->user()->id)->whereProductId($this->product->id)->first();
         if ($cart) {

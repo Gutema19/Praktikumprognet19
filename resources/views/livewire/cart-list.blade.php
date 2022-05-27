@@ -12,7 +12,10 @@
                         <!-- Head Row -->
                         <thead>
                             <tr>
-                                <th class="pro-remove">Checklist</th>
+                                {{-- <th class="pro-remove">
+                                    <input type="checkbox" wire:model="selectAll">
+                                </th> --}}
+                                <th></th>
                                 <th class="pro-remove">Delete</th>
                                 <th class="pro-thumbnail">Image</th>
                                 <th class="pro-title">Product</th>
@@ -27,7 +30,7 @@
                             <!-- Product Row -->
                             <tr>
                                 <td>
-                                    <input type="checkbox" wire:click="selectedItems">
+                                    <input type="checkbox" wire:model="selected" value="{{ $cart->id }}">
                                 </td>
                                 <td class="pro-remove"><a wire:click='deleteItem({{ $cart->id }})'
                                     class="text-gray-32 font-size-26"><i class="far fa-trash-alt"></i></a>
@@ -91,7 +94,7 @@
                 </div>
                 @if ($carts->count() > 0)
                     <div class="mb-5 d-flex justify-content-center">
-                        <button type="button" wire:click='checkout' wire:loading.attr="disabled"
+                        <button type="button" wire:click='checkoutSelected' wire:loading.attr="disabled"
                             class="btn btn-primary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto checkout-btn c-btn btn--primary">Checkout</button>
                     </div>
                 @endif

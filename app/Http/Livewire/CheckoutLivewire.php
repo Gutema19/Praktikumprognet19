@@ -43,7 +43,7 @@ class CheckoutLivewire extends Component
         $this->sumSubtotal();
         $this->sumWeight();
         $this->provinces = Province::all();
-        $this->carts = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
+        $this->carts = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('checked')->get();
         $this->couriers = Courier::all('courier', 'id');
         return view('livewire.checkout');
     }
@@ -92,7 +92,7 @@ class CheckoutLivewire extends Component
 
     public function sumSubtotal()
     {
-        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
+        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('checked')->get();
         $this->subtotal = 0;
         foreach ($cart as $item) {
             $this->subtotal += $item->product->discount ? $item->product->price_discount() * $item->qty : $item->product->price * $item->qty;
@@ -101,7 +101,7 @@ class CheckoutLivewire extends Component
 
     public function sumWeight()
     {
-        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
+        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('checked')->get();
         $this->weight = 0;
         foreach ($cart as $item) {
             $this->weight += $item->product->weight * $item->qty;
@@ -112,7 +112,7 @@ class CheckoutLivewire extends Component
     {
         $this->validate();
 
-        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->get();
+        $cart = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('checked')->get();
         $trx = Transaction::create([
             'timeout' => Carbon::now()->addDay(),
             'address' => $this->address,
@@ -136,7 +136,7 @@ class CheckoutLivewire extends Component
             $item->product->stock -= $item->qty;
             $item->product->save();
         }
-        Cart::whereUserId(auth()->user()->id)->whereStatus('Dalam Keranjang')->delete();
+        Cart::whereUserId(auth()->user()->id)->whereStatus('checked')->delete();
         
         return redirect()->route('payment', $trx->id);
     }

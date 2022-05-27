@@ -81,6 +81,10 @@ class ProductBuyNowLivewire extends Component
 
     public function checkCost()
     {
+        if (!auth()->check()) {
+            return redirect()->route('user_login');
+        }
+        
         $this->validate();
 
         $this->cost = Http::withHeaders([
