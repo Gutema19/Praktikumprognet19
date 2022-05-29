@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\verfy;
 use App\Http\Controllers\logout;
@@ -16,9 +17,11 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProductUserController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Admin\CourierController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DetailCategoryController;
 use App\Http\Controllers\Admin\TransactionResourceController;
 
@@ -52,7 +55,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Admin akses setelah login
     Route::middleware('auth:admin')->group(function () {
-        Route::get('/homeadmin', [App\Http\Controllers\HomeController::class, 'index1'])->name('home_admin'); // menampilkan halaman admin
+        // Route::get('/', )->name('dashboard'); // menampilkan halaman admin
+        Route::get('/homeadmin', [App\Http\Controllers\HomeController::class, 'index1'])->name('home_admin');
+        Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
         Route::get('/logoutadmin', [logout::class, 'logout1'])->name('adminlogout'); // Log out Admin
 
         //Kategori Route
@@ -95,8 +100,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::patch('courier/editprocess/{id}', [CourierController::class, 'editprocess']);
         Route::delete('/courier/{id}', [CourierController::class, 'delete']);
         
+        // Laporan route
+        Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+
+
          //Transaction Route
-        Route::resource('transaction', TransactionResourceController::class);
+        // Route::resource('transaction', TransactionResourceController::class);
+        Route::get('/transaction',[TransactionResourceController::class, 'index'])->name('transaction.index');
         Route::post('transaction/{transaction}/{id}/accept', [TransactionResourceController::class, 'acceptPayment'])->name('transaction.accept');
         Route::post('transaction/{transaction}/shipped', [TransactionResourceController::class, 'updateShipped'])->name('transaction.shipped');
         Route::post('transaction/{transaction}/cancel', [TransactionResourceController::class, 'cancelTransaction'])->name('transaction.cancel');
