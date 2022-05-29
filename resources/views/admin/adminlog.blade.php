@@ -58,7 +58,7 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="showpass1()">
                 <label class="form-check-label" for="exampleCheck1">Show Password</label>
             </div>
-            <button type="submit" class="btn btn-secondary log" data-aos="fade-up" data-aos-delay="600">Login</button>
+            <button type="submit" class="btn btn-secondary log" >Login</button>
         </form>
         <button type="submit" class="btn btn-secondary regadmin" data-aos="fade-up" data-aos-delay="600">Register</button>
         <div class="footer">

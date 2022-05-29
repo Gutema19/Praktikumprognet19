@@ -26,6 +26,10 @@ class ProductUserController extends Controller
             return view('user.product-detail', compact('product', 'reviews', 'reviewCount', 'rate'));
         }
         $isHasReview = $product->reviews()->where('user_id', auth()->user()->id)->where('product_id', $product->id)->count() > 0;
+        $user = Admin::all();
+        $message = "Produk anda sudah diulas oleh pembeli" . Auth::guard('web')->user()->name . "";
+
+        Notification::send($user, new AdminNotification($message));
         return view('user.product-detail', compact('product', 'reviews', 'rate', 'reviewCount', 'isHasReview'));
     }
     

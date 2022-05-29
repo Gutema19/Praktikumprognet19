@@ -14,8 +14,8 @@ class AdminNotification extends Model
         'notifiable_type',
         'notifiable_id',
         'data',
-        'read_at',
+        // 'read_at',
     ];
 
-    // protected $guarded =[];
+    protected $guarded =['read_at'];
 }
