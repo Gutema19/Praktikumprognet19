@@ -17,10 +17,21 @@ class TransactionResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::with('user', 'courier', 'products')->orderBy('created_at', 'DESC')->get();
-        return view('admin.transaction.index', compact('transactions'));
+        $transactions = Transaction::with('user', 'courier', 'products')->orderBy('created_at', 'DESC');
+        if($request->year){
+          $transactions->whereYear('created_at',$request->year);
+        }
+        if($request->month){
+          $transactions->whereMonth('created_at',$request->month);
+        }
+        $transactions = $transactions->paginate(10);
+      
+      
+      return view('admin.transaction.index')->with(compact('transactions'));
+        // $transactions = Transaction::with('user', 'courier', 'products')->orderBy('created_at', 'DESC')->get();
+        // return view('admin.transaction.index', compact('transactions'));
     }
 
     /**
@@ -67,6 +78,8 @@ class TransactionResourceController extends Controller
 
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction has been cancelled');
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

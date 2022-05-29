@@ -35,18 +35,28 @@ Coded by www.creative-tim.com
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+        <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/paper-dashboard.css') }}"  />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="{{ 'assets/demo/demo.css' }}" />
-  <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-  <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-  <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <!-- <link rel="stylesheet" href="css/elegant-icons.css" type="text/css"> -->
+  <!-- <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css"> -->
+  <!-- <link rel="stylesheet" href="css/magnific-popup.css" type="text/css"> -->
+  <!-- <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css"> -->
+  <!-- <link rel="stylesheet" href="css/slicknav.min.css" type="text/css"> -->
+  <!-- <link rel="stylesheet" href="css/style.css" type="text/css"> -->
   <link rel="stylesheet" href="{{ asset('css/imageform.css')}}" type="text/css">
-  <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+
+  <!-- <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
 </head>
 
 <body class="">
@@ -69,7 +79,7 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="{{ url('admin/homeadmin') }}">
+            <a href="{{ url('admin/dashboard') }}">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
@@ -111,7 +121,7 @@ Coded by www.creative-tim.com
             </a>
           </li>
           <li>
-            <a href="{{ route('admin.transaction.index') }}">
+            <a href="{{ route('admin.laporan.index') }}">
               <i class="nc-icon nc-single-copy-04"></i>
               <p>Laporan</p>
             </a>
@@ -187,12 +197,18 @@ Coded by www.creative-tim.com
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('assets/js/paper-dashboard.min.js') }}?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{ asset('assets/demo/demo.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
       demo.initChartsPages();
     });
   </script>
+  @yield('js')
  
 </body>
 
