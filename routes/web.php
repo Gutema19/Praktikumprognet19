@@ -76,6 +76,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::patch('detailkategori/editproses/{id}', [App\Http\Controllers\Admin\DetailCategoryController::class, 'editprocess']);
         Route::delete('detailkategori/{id}', [App\Http\Controllers\Admin\DetailCategoryController::class, 'delete']);
         
+        
         //Product Route
         Route::get('product', [ProductController::class, 'index'])->name('listproduct');
         Route::get('product/add', [ProductController::class, 'add']);
@@ -83,6 +84,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('product/edit/{id}',[ProductController::class, 'edit']);
         Route::patch('product/editproses/{id}', [ProductController::class, 'editprocess']);
         Route::delete('product/{id}', [ProductController::class, 'delete']);
+        Route::get('product/review/{id}', [ProductController::class, 'listReviewProduct'])->name('product.reviews');
+        Route::post('/product/review-response/{id}', [ProductController::class, 'responseReview'])->name('product.review-response');
+
+
         
         // Admin List
         Route::get('/list', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('listadmin');
@@ -167,7 +172,7 @@ Route::middleware('guest')->group(function () {
 
     //Admin Lupa Password
     Route::get('/adminfpassview', [fpassctrl1::class, 'index1'])->name('adminpassword.request');
-    Route::post('/fpassadmin', [fpassctrl1::class, 'adminv'])->name('password.email');
+    Route::post('/fpassadmin', [fpassctrl1::class, 'adminv'])->name('apassword.email');
     Route::get('/npassview', [npassctrl::class, 'index1'])->name('anewpassword.request');
 });
 

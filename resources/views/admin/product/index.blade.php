@@ -43,6 +43,9 @@
                                 <a href="{{  url('admin/product/edit/'.$item->id) }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-pencil"></i>
                                 </a>
+                                <a href="{{  url('admin/product/review/'.$item->id) }}" class="btn btn-primary btn-sm">
+                                  <i class="fa fa-commenting"></i>
+                              </a>
                                 <form action="{{  url('admin/product/'.$item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus Data?')">
                                     @method('delete')
                                     @csrf

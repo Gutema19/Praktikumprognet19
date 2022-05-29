@@ -2,40 +2,40 @@
 <div class="tab-content" id="myTabContent">
      <div class="container">
           <div class="row">
-              <div class="col-xl-3 col-md-6 mt--30">
-                  <div class="feature-box h-100">
-                      <div class="icon">
-                          <i class="fa fa-shopping-bag"></i>
-                      </div>
-                      <div class="text">
-                          <h5>Filter by Category</h5>
-                          <select wire:model="byCategory" class="form-control" >
-                               <option value=""></option>
-                               @foreach ($categories as $category)
-                               <option value="{{ $category->id }}">
-                               {{ $category->category_name }}
-                               </option>
-                               @endforeach
-                           </select>
-                      </div>
-                  </div>
-              </div>
+               <div class="col-xl-3 col-md-6 mt--30">
+                    <div class="feature-box h-100">
+                         <div class="icon">
+                              <i class="fa fa-shopping-bag"></i>
+                         </div>
+                         <div class="text">
+                              <h5>Filter by Category</h5>
+                              <select wire:model="byCategory" class="form-control" >
+                                   <option value=""></option>
+                                   @foreach ($categories as $category)
+                                   <option value="{{ $category->id }}">
+                                   {{ $category->category_name }}
+                                   </option>
+                                   @endforeach
+                              </select>
+                         </div>
+                    </div>
+               </div>
           </div>
-      </div> 
-    <div class="tab-pane show active" id="shop" role="tabpanel" aria-labelledby="shop-tab">
-         <div class="product-slider multiple-row  slider-border-multiple-row  sb-slick-slider"
-              data-slick-setting='{
-         "autoplay": true,
-         "autoplaySpeed": 8000,
-         "slidesToShow": 5,
-         "rows":2,
-         "dots":true
-    }' data-slick-responsive='[
-         {"breakpoint":1200, "settings": {"slidesToShow": 3} },
-         {"breakpoint":768, "settings": {"slidesToShow": 2} },
-         {"breakpoint":480, "settings": {"slidesToShow": 1} },
-         {"breakpoint":320, "settings": {"slidesToShow": 1} }
-    ]'>
+     </div> 
+     <div class="tab-pane show active" id="shop" role="tabpanel" aria-labelledby="shop-tab">
+          <div class="product-slider multiple-row  slider-border-multiple-row  sb-slick-slider"
+               data-slick-setting='{
+          "autoplay": true,
+          "autoplaySpeed": 8000,
+          "slidesToShow": 5,
+          "rows":2,
+          "dots":true
+     }' data-slick-responsive='[
+          {"breakpoint":1200, "settings": {"slidesToShow": 3} },
+          {"breakpoint":768, "settings": {"slidesToShow": 2} },
+          {"breakpoint":480, "settings": {"slidesToShow": 1} },
+          {"breakpoint":320, "settings": {"slidesToShow": 1} }
+     ]'>
 
                @foreach($products as $product)
                <div class="single-slide">

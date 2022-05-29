@@ -20,8 +20,9 @@ class ProductLivewire extends Component
 
     public function render()
     {
-        $products = Product_category_detail::when($this->byCategory, function($query){
-            $query->where('product_id',$this->byCategory);
+        // $products = Product::where('product_name', 'like', '%' . $this->search . '%')->paginate(8);
+
+        $products = Product_category_detail::when($this->byCategory, function($query){ $query->where('product_id',$this->byCategory);
         })->paginate(8);
         $categories = Product_category::all();
         return view('livewire.product', compact('products','categories'));

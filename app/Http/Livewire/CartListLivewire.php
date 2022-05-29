@@ -65,6 +65,12 @@ class CartListLivewire extends Component
             'status' => 'checked'
         ]);
 
-        return redirect()->route('checkout');
+        $checked = Cart::with('product')->whereUserId(auth()->user()->id)->whereStatus('checked')->get();
+
+        if(!$checked->isEmpty()){
+            return route('cart');
+        }else{
+            return redirect()->route('checkout');
+        }
     }
 }
