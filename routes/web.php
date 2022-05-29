@@ -56,6 +56,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Admin akses setelah login
     Route::middleware('auth:admin')->group(function () {
         // Route::get('/', )->name('dashboard'); // menampilkan halaman admin
+        Route::get('/homeadmin', [App\Http\Controllers\HomeController::class, 'index1'])->name('home_admin');
         Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
         Route::get('/logoutadmin', [logout::class, 'logout1'])->name('adminlogout'); // Log out Admin
 
