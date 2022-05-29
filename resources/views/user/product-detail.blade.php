@@ -32,7 +32,6 @@
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-4 mb-md-6 mb-lg-0">
                         <div class="mb-2">
-                            <a href="#" class="font-size-12 text-gray-5 mb-2 d-inline-block">Headphones</a>
                             <h2 class="font-size-25 text-lh-1dot2">{{ $product->product_name }}</h2>
                             <div class="mb-2">
                                 {{ round($product->rate, 1) }}
@@ -276,12 +275,14 @@
                             @endif
                         @endauth
                     </div>
+
                     <!-- Review -->
                     {{-- @auth --}}
                     @foreach ($reviews as $review)
                         <div class="border-bottom border-color-1 pb-4 mb-4">
+                            <hr>
                             <!-- Review Rating -->
-                            <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
+                            <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mt-3">
                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
                                     @for ($i = 0; $i < round($review->rate); $i++)
                                         <small class="fas fa-star"></small>

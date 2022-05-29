@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Product_category;
+use App\Models\Product_category_detail;
 use Livewire\Component;
 
 class ProductLivewire extends Component
@@ -13,10 +15,16 @@ class ProductLivewire extends Component
     // protected $paginationTheme = 'bootstrap';
     
     public $search;
+    
+    public $byCategory = null;
+
     public function render()
     {
-        $products = Product::where('product_name', 'like', '%' . $this->search . '%')->paginate(8);
-        return view('livewire.product', compact('products'));
+        $products = Product_category_detail::when($this->byCategory, function($query){
+            $query->where('product_id',$this->byCategory);
+        })->paginate(8);
+        $categories = Product_category::all();
+        return view('livewire.product', compact('products','categories'));
     }
 
     public function addToCart($id)

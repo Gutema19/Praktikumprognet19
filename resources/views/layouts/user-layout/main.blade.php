@@ -20,23 +20,12 @@
             <div class="header-middle pt--10 pb--10">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 ">
+                        <div class="col-lg-2 ">
                             <a href="/" class="site-brand">
                                 <img src="/component/Logo.svg" alt="">
                             </a>
                         </div>
-                        {{-- <div class="col-lg-3">
-                            <div class="header-phone ">
-                                <div class="icon">
-                                    <i class="fas fa-headphones-alt"></i>
-                                </div>
-                                <div class="text">
-                                    <p>Free Support 24/7</p>
-                                    <p class="font-weight-bold number">+01-202-555-0181</p>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
                                     @auth
@@ -47,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <div class="main-navigation flex-lg-right">
                                 <ul class="main-menu menu-right ">
                                     @auth
@@ -59,11 +48,7 @@
                                         <a href="{{ url('/my-transaction') }}">My Transaction</a>
                                     </li>
                                     <li class="menu-item has-children">
-                                        <a href="{{ route('notification.user.all')}}">Notifikasi<i
-                                                class="fas fa-chevron-down dropdown-arrow"></i></a>
-                                        <ul class="sub-menu">
-                                            <li> <a href="{{ url('/logout') }}"></a></li>
-                                        </ul>
+                                        <a href="{{ route('notification.user.all')}}">Notifikasi</a>
                                     </li>
                                     <li class="menu-item has-children">
                                         <a href="">{{ auth()->user()->name }} <i
@@ -78,9 +63,6 @@
                                     </li>
                                     <li class="menu-item">
                                         <a href="{{ url('/register_user') }}">Register</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="{{ route('notification.user.all')}}">Notifikasi</a>
                                     </li>
                                     @endauth
                                 </ul>
