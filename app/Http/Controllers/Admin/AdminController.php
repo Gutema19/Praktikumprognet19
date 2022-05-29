@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 
@@ -13,6 +14,12 @@ class AdminController extends Controller
     {
         $admin = Admin::all();
         return view('admin.admin.index', compact('admin'));
+    }
+
+    public function notification(){
+        $notification = Auth::guard('admin')->user()->notifications;
+
+        return view('admin.notification', compact('notification'));
     }
 
     public function add()
