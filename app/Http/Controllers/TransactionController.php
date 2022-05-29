@@ -13,6 +13,12 @@ use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
+    public function notification(){
+        $notification = Auth::guard('web')->user()->notifications;
+
+        return view('user.notification', compact('notification'));
+    }
+
     public function payment(Transaction $transaction)
     {
         if (auth()->user()->id !== $transaction->user_id) {
@@ -23,6 +29,10 @@ class TransactionController extends Controller
                 'status' => 'Expired'
             ]);
         }
+        $user = Admin::all();
+        $message = "Halo ada transaksi baru" . Auth::guard('web')->user()->name . "";
+
+        Notification::send($user, new AdminNotification($message));
         return view('user.transaction.payment', compact('transaction'));
     }
 
@@ -40,7 +50,10 @@ class TransactionController extends Controller
             'proof_of_payment' => $imageName,
             'status' => 'Pending',
         ]);
+        $user = Admin::all();
+        $message = "Bukti Pembayaran dari" . Auth::guard('web')->user()->name. "telah diupload";
 
+        Notification::send($user, new AdminNotification($message));
         return redirect()->route('payment', $transaction);
     }
 

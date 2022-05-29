@@ -72,7 +72,7 @@
                                                     </div>
                                                     @if ($transaction->status == 'Pending')
                                                         <form
-                                                            action="{{ route('admin.transaction.accept', $transaction->id) }}"
+                                                            action="{{ route('admin.transaction.accept', [ 'id' => $transaction->id, 'transaction' => $transaction->id]) }}"
                                                             method="post" id="form-acc">
                                                             @csrf
                                                             <a onclick="document.getElementById('form-acc').submit()"

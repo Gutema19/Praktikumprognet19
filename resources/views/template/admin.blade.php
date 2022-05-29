@@ -104,6 +104,18 @@ Coded by www.creative-tim.com
               <p>Transaction</p>
             </a>
           </li>
+          <li>
+            <a href="{{ route('notification.all') }}">
+              <i class="nc-icon nc-bell-55"></i>
+              <p>Notifikasi</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('admin.transaction.index') }}">
+              <i class="nc-icon nc-single-copy-04"></i>
+              <p>Laporan</p>
+            </a>
+          </li>
           {{-- <li>
             <a href="./tables.html">
               <i class="nc-icon nc-money-coins"></i>

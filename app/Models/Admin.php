@@ -41,9 +41,7 @@ class Admin extends Model implements Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+    public function notifications(){
+        return $this->morphMany(AdminNotification::class, 'notifiable' )->orderBy('created_at', 'desc');
+    }
 }
