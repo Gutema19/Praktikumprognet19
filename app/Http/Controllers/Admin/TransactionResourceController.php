@@ -7,6 +7,8 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\UserNotification;
+use Illuminate\Support\Facades\Notification;
 
 class TransactionResourceController extends Controller
 {
@@ -27,12 +29,16 @@ class TransactionResourceController extends Controller
      * @param Transaction $transaction
      * @return void
      */
-    public function acceptPayment(Transaction $transaction)
+    public function acceptPayment($id, Transaction $data)
     {
-        $transaction->update([
+        $data =  Transaction::find($id);
+        $data->update([
             'status' => 'Dalam Pengiriman'
         ]);
+        $user = User::find($data->user_id);
+        $message = "Transaksi".  $user->name . ", telah dikirim dan dalam pengiriman";
 
+        Notification::send($user, new UserNotification($message));
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction has been accepted');
     }
 
@@ -42,6 +48,10 @@ class TransactionResourceController extends Controller
             'status' => 'Telah Sampai'
         ]);
 
+        $user = User::find($transaction->user_id);
+        $message = "Paket".  $user->name . ", telah sampai";
+
+        Notification::send($user, new UserNotification($message));
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction has been shipped');
     }
 
@@ -54,6 +64,7 @@ class TransactionResourceController extends Controller
         $transaction->update([
             'status' => 'Dibatalkan'
         ]);
+
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction has been cancelled');
     }
 

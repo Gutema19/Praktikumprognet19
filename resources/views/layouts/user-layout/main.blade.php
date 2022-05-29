@@ -59,6 +59,13 @@
                                         <a href="{{ url('/my-transaction') }}">My Transaction</a>
                                     </li>
                                     <li class="menu-item has-children">
+                                        <a href="{{ route('notification.user.all')}}">Notifikasi<i
+                                                class="fas fa-chevron-down dropdown-arrow"></i></a>
+                                        <ul class="sub-menu">
+                                            <li> <a href="{{ url('/logout') }}"></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item has-children">
                                         <a href="">{{ auth()->user()->name }} <i
                                                 class="fas fa-chevron-down dropdown-arrow"></i></a>
                                         <ul class="sub-menu">
@@ -71,6 +78,9 @@
                                     </li>
                                     <li class="menu-item">
                                         <a href="{{ url('/register_user') }}">Register</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{ route('notification.user.all')}}">Notifikasi</a>
                                     </li>
                                     @endauth
                                 </ul>

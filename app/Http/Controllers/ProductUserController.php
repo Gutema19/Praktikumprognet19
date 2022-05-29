@@ -28,6 +28,7 @@ class ProductUserController extends Controller
         $isHasReview = $product->reviews()->where('user_id', auth()->user()->id)->where('product_id', $product->id)->count() > 0;
         return view('user.product-detail', compact('product', 'reviews', 'rate', 'reviewCount', 'isHasReview'));
     }
+    
     public function storeReview(Request $request, Product $product)
     {
         if ($product->reviews()->where('user_id', auth()->user()->id)->count() > 0) return redirect()->back();

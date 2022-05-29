@@ -97,7 +97,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
          //Transaction Route
         Route::resource('transaction', TransactionResourceController::class);
-        Route::post('transaction/{transaction}/accept', [TransactionResourceController::class, 'acceptPayment'])->name('transaction.accept');
+        Route::post('transaction/{transaction}/{id}/accept', [TransactionResourceController::class, 'acceptPayment'])->name('transaction.accept');
         Route::post('transaction/{transaction}/shipped', [TransactionResourceController::class, 'updateShipped'])->name('transaction.shipped');
         Route::post('transaction/{transaction}/cancel', [TransactionResourceController::class, 'cancelTransaction'])->name('transaction.cancel');
     });
@@ -131,6 +131,10 @@ Route::middleware('auth')->group(function () {
 
     // Route My Transaction
     Route::get('my-transaction', [OrderUserController::class, 'index'])->name('my-transaction');
+
+    // Route Notifikasi
+    Route::get('/notification', [AdminController::class, 'notification'])->name('notification.all');
+    Route::get('/usernotification', [TransactionController::class, 'notification'])->name('notification.user.all');
 
 });
 
